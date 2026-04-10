@@ -9,10 +9,15 @@ find_package(OpenXR REQUIRED)
 
 # Include directories
 include_directories(${OPENXR_INCLUDE_DIRS})
+include_directories(/usr/include/openxr)
 
 # Create main service executable
 add_executable(wivrn-fbt-service wivrn_fbt_core.cpp)
+
+# Link libraries
 target_link_libraries(wivrn-fbt-service ${OPENXR_LIBRARIES})
+target_link_libraries(wivrn-fbt-service openxr_loader)
+target_link_libraries(wivrn-fbt-service pthread)
 
 # Install targets
 install(TARGETS wivrn-fbt-service DESTINATION /usr/local/bin)

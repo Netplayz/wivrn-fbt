@@ -68,7 +68,8 @@ libopencv-dev
 
 ### 1. Clone or Download
 ```bash
-git clone https://github.com/netplayz/wivrn-fbt.git
+cd ~/projects
+git clone https://github.com/yourusername/wivrn-fbt.git
 cd wivrn-fbt
 ```
 
