@@ -1,0 +1,36 @@
+[Unit]
+Description=WiVRn Full Body Tracking - Webcam Service
+After=network.target wivrn-fbt-service.service
+PartOf=wivrn-fbt.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/wivrn-fbt/webcam_tracker.py
+Restart=on-failure
+RestartSec=5
+User=root
+Group=root
+
+# Resource limits
+MemoryMax=512M
+CPUQuota=100%
+
+# Permissions
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+# Device access for webcam
+DevicePolicy=closed
+DeviceAllow=/dev/video*
+DeviceAllow=/dev/snd
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wivrn-fbt-webcam
+
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target

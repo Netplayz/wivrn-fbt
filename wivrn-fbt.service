@@ -1,0 +1,35 @@
+[Unit]
+Description=WiVRn Full Body Tracking - OpenXR Core Service
+After=network.target
+Before=wivrn-fbt-webcam.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/wivrn-fbt-service
+Restart=on-failure
+RestartSec=5
+User=root
+Group=root
+
+# Resource limits
+MemoryMax=256M
+CPUQuota=50%
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wivrn-fbt-core
+
+# Environment
+Environment="XR_RUNTIME_JSON=/etc/wivrn/wivrn-server.json"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,113 @@
+{
+  "service": {
+    "openxr_port": 9876,
+    "tracking_server_host": "127.0.0.1",
+    "tracking_server_port": 9876,
+    "enable_logging": true,
+    "log_level": "info",
+    "log_file": "/var/log/wivrn-fbt.log"
+  },
+  "webcam": {
+    "camera_id": 0,
+    "resolution_width": 1280,
+    "resolution_height": 720,
+    "fps": 30,
+    "enable_preview": true,
+    "mirror_image": true
+  },
+  "pose_estimation": {
+    "model_complexity": 1,
+    "smooth_landmarks": true,
+    "min_detection_confidence": 0.5,
+    "min_tracking_confidence": 0.5,
+    "smoothing_factor": 0.7
+  },
+  "tracking": {
+    "depth_calibration_distance": 1.5,
+    "reference_shoulder_width": 0.45,
+    "depth_min": 0.3,
+    "depth_max": 4.0,
+    "enable_filtering": true,
+    "filter_type": "kalman"
+  },
+  "vr_space": {
+    "vr_scale_factor": 1.0,
+    "person_offset_x": 0.0,
+    "person_offset_y": 0.0,
+    "person_offset_z": 0.0,
+    "enable_hand_tracking": true,
+    "enable_foot_tracking": true
+  },
+  "trackers": {
+    "head": {
+      "enabled": true,
+      "landmark_index": 0,
+      "vr_id": 0
+    },
+    "chest": {
+      "enabled": true,
+      "landmark_index": 12,
+      "vr_id": 1
+    },
+    "waist": {
+      "enabled": true,
+      "landmark_index": 23,
+      "vr_id": 2
+    },
+    "left_foot": {
+      "enabled": true,
+      "landmark_index": 31,
+      "vr_id": 3
+    },
+    "right_foot": {
+      "enabled": true,
+      "landmark_index": 32,
+      "vr_id": 4
+    },
+    "left_elbow": {
+      "enabled": true,
+      "landmark_index": 13,
+      "vr_id": 5
+    },
+    "right_elbow": {
+      "enabled": true,
+      "landmark_index": 14,
+      "vr_id": 6
+    },
+    "left_hand": {
+      "enabled": true,
+      "landmark_index": 19,
+      "vr_id": 7
+    },
+    "right_hand": {
+      "enabled": true,
+      "landmark_index": 20,
+      "vr_id": 8
+    },
+    "left_knee": {
+      "enabled": true,
+      "landmark_index": 25,
+      "vr_id": 9
+    },
+    "right_knee": {
+      "enabled": true,
+      "landmark_index": 26,
+      "vr_id": 10
+    }
+  },
+  "calibration": {
+    "auto_calibrate": false,
+    "calibration_duration": 2,
+    "require_calibration": false,
+    "save_calibration": true,
+    "calibration_file": "/home/.wivrn-fbt/calibration.json"
+  },
+  "advanced": {
+    "enable_gesture_recognition": false,
+    "gesture_timeout": 2000,
+    "velocity_calculation_frames": 5,
+    "rotation_estimation_method": "imu_fusion",
+    "network_latency_compensation": true,
+    "adaptive_tracking": true
+  }
+}
