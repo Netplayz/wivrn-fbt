@@ -353,10 +353,8 @@ def main():
                        help='Camera device ID (default: 0)')
     parser.add_argument('--port', type=int, default=9876,
                        help='UDP output port (default: 9876)')
-    parser.add_argument('--enable-preview', action='store_true', default=True,
-                       help='Show preview window (default: True)')
     parser.add_argument('--no-preview', dest='enable_preview', action='store_false',
-                       help='Disable preview window')
+                       help='Disable preview window (default: enabled)')
     parser.add_argument('--smoothing', type=float, default=0.7,
                        help='Pose smoothing factor 0.1-1.0 (default: 0.7)')
     parser.add_argument('--detection-confidence', type=float, default=0.5,

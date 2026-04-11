@@ -95,8 +95,7 @@ flatpak run \
     io.github.wivrn.wivrn \
     python3 "$TRACKER_PATH" \
     --config "$CONFIG_PATH" \
-    --camera-id 0 \
-    --enable-preview
+    --camera-id 0
 LAUNCHER
 
 chmod +x "${HOME}/.local/bin/wivrn-fbt-flatpak"
