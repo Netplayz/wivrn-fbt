@@ -72,7 +72,7 @@ wivrn-fbt-stop          # Stop
 
 - WiVRn Flatpak installed:
   ```bash
-  flatpak install flathub com.wivrn.WiVRn
+  flatpak install flathub io.github.wivrn.wivrn
   ```
 - No `sudo` needed (user-level only)
 
@@ -110,10 +110,10 @@ wivrn-fbt-stop-flatpak               # Stop service
 ### File Locations (Flatpak)
 
 ```
-~/.var/app/com.wivrn.WiVRn/data/wivrn-fbt/
+~/.var/app/io.github.wivrn.wivrn/data/wivrn-fbt/
 └── webcam_tracker.py
 
-~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/
+~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/
 └── config.json
 
 ~/.local/bin/
@@ -180,7 +180,7 @@ nano ~/.wivrn-fbt/config.json
 ```bash
 wivrn-fbt-config-flatpak
 # or
-nano ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
+nano ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json
 ```
 
 ### Performance
@@ -252,7 +252,7 @@ wivrn-fbt-start
 
 **Problem**: "WiVRn Flatpak not found"
 ```bash
-flatpak install flathub com.wivrn.WiVRn
+flatpak install flathub io.github.wivrn.wivrn
 bash install_flatpak.sh
 ```
 
@@ -317,7 +317,7 @@ wivrn_fbt_config.json        (Same config format)
 
 3. Copy config (optional):
    ```bash
-   cp ~/.wivrn-fbt/config.json ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
+   cp ~/.wivrn-fbt/config.json ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json
    ```
 
 4. Start Flatpak:
@@ -339,7 +339,7 @@ wivrn_fbt_config.json        (Same config format)
 
 3. Copy config (optional):
    ```bash
-   cp ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json ~/.wivrn-fbt/config.json
+   cp ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json ~/.wivrn-fbt/config.json
    ```
 
 4. Start native:
@@ -357,10 +357,10 @@ You can copy configs between them:
 
 ```bash
 # Flatpak → Native
-cp ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json ~/.wivrn-fbt/config.json
+cp ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json ~/.wivrn-fbt/config.json
 
 # Native → Flatpak
-cp ~/.wivrn-fbt/config.json ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
+cp ~/.wivrn-fbt/config.json ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json
 ```
 
 ---

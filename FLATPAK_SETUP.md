@@ -6,7 +6,7 @@ Running WiVRn FBT inside the official WiVRn Flatpak sandbox.
 
 1. **WiVRn Flatpak installed**:
    ```bash
-   flatpak install flathub com.wivrn.WiVRn
+   flatpak install flathub io.github.wivrn.wivrn
    ```
 
 2. **Files needed**:
@@ -84,7 +84,7 @@ wivrn-fbt-config-flatpak
 
 Or directly:
 ```bash
-nano ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
+nano ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json
 ```
 
 ## Architecture
@@ -92,7 +92,7 @@ nano ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
 ### File Structure in Flatpak
 
 ```
-~/.var/app/com.wivrn.WiVRn/
+~/.var/app/io.github.wivrn.wivrn/
 ├── data/wivrn-fbt/
 │   └── webcam_tracker.py      (Installed tracker)
 ├── config/wivrn-fbt/
@@ -124,7 +124,7 @@ The tracker accepts arguments for one-off runs:
 
 ```bash
 wivrn-fbt-flatpak \
-  --config ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json \
+  --config ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json \
   --camera-id 0 \
   --port 9876 \
   --enable-preview \
@@ -150,7 +150,7 @@ wivrn-fbt-flatpak \
 
 ### Location
 
-User configuration: `~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json`
+User configuration: `~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json`
 
 Edit with:
 ```bash
@@ -198,8 +198,8 @@ wivrn-fbt-flatpak --smoothing 0.5 --detection-confidence 0.6
 
 **Fix**: Install WiVRn first:
 ```bash
-flatpak install flathub com.wivrn.WiVRn
-flatpak run com.wivrn.WiVRn  # Test it works
+flatpak install flathub io.github.wivrn.wivrn
+flatpak run io.github.wivrn.wivrn  # Test it works
 ```
 
 ### Service doesn't start
@@ -218,13 +218,13 @@ journalctl --user -u wivrn-fbt-flatpak -n 50
 
 **Inside Flatpak, check**:
 ```bash
-flatpak run --device=all com.wivrn.WiVRn \
+flatpak run --device=all io.github.wivrn.wivrn \
   python3 -c "import cv2; print(cv2.VideoCapture(0).isOpened())"
 ```
 
 **Grant webcam access**:
 ```bash
-flatpak override --device=all com.wivrn.WiVRn
+flatpak override --device=all io.github.wivrn.wivrn
 ```
 
 ### Poor tracking quality
@@ -265,13 +265,13 @@ bash install_flatpak.sh  # Reinstalls tracker
 
 Manually edit config or replace:
 ```bash
-cp wivrn_fbt_config.json ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json
+cp wivrn_fbt_config.json ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json
 ```
 
 ### Update WiVRn Flatpak
 
 ```bash
-flatpak update com.wivrn.WiVRn
+flatpak update io.github.wivrn.wivrn
 ```
 
 ## Advanced
@@ -316,8 +316,8 @@ systemctl --user disable wivrn-fbt-flatpak.service
 
 Remove tracker from Flatpak:
 ```bash
-rm -rf ~/.var/app/com.wivrn.WiVRn/data/wivrn-fbt
-rm -rf ~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt
+rm -rf ~/.var/app/io.github.wivrn.wivrn/data/wivrn-fbt
+rm -rf ~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt
 rm -rf ~/.local/bin/wivrn-fbt-*
 systemctl --user disable wivrn-fbt-flatpak.service
 rm ~/.config/systemd/user/wivrn-fbt-flatpak.service
@@ -330,7 +330,7 @@ Once tracker is running:
 
 1. **Start WiVRn normally**:
    ```bash
-   flatpak run com.wivrn.WiVRn
+   flatpak run io.github.wivrn.wivrn
    ```
 
 2. **Launch VR app** (SteamVR game, etc.)
@@ -378,7 +378,7 @@ journalctl --user -u wivrn-fbt-flatpak -f
 ## Support
 
 - **Tracker logs**: `journalctl --user -u wivrn-fbt-flatpak -f`
-- **Configuration**: `~/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json`
+- **Configuration**: `~/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json`
 - **Direct run**: `wivrn-fbt-flatpak --help`
 - **WiVRn docs**: https://github.com/WiVRn/WiVRn
 - **Flatpak docs**: https://docs.flatpak.org

@@ -2,17 +2,18 @@
 
 # WiVRn Full Body Tracking - WiVRn Flatpak Integration
 # Detects and installs into WiVRn Flatpak environment
+# App ID: io.github.wivrn.wivrn
 
 set -e
 
 echo "╔════════════════════════════════════════════════════════════════╗"
 echo "║  WiVRn FBT - Flatpak Integration                              ║"
-echo "║  Installing into WiVRn Flatpak Runtime                        ║"
+echo "║  Installing into io.github.wivrn.wivrn                        ║"
 echo "╚════════════════════════════════════════════════════════════════╝"
 echo ""
 
-# Detect WiVRn Flatpak
-WIVRN_FLATPAK_DIR="${HOME}/.var/app/com.wivrn.WiVRn"
+# Detect WiVRn Flatpak (correct app ID)
+WIVRN_FLATPAK_DIR="${HOME}/.var/app/io.github.wivrn.wivrn"
 WIVRN_DATA_DIR="${WIVRN_FLATPAK_DIR}/data"
 WIVRN_CONFIG_DIR="${WIVRN_FLATPAK_DIR}/config"
 
@@ -20,7 +21,7 @@ if [ ! -d "$WIVRN_FLATPAK_DIR" ]; then
     echo "❌ WiVRn Flatpak not found at: $WIVRN_FLATPAK_DIR"
     echo ""
     echo "Install WiVRn first:"
-    echo "  flatpak install flathub com.wivrn.WiVRn"
+    echo "  flatpak install flathub io.github.wivrn.wivrn"
     echo ""
     exit 1
 fi
@@ -37,12 +38,12 @@ echo ""
 
 # Copy Python tracker to Flatpak data directory
 echo "📦 Installing Python tracker..."
-if [ -f "./webcam_tracker.py" ]; then
-    cp webcam_tracker.py "$WIVRN_DATA_DIR/wivrn-fbt/"
-    chmod +x "$WIVRN_DATA_DIR/wivrn-fbt/webcam_tracker.py"
+if [ -f "./webcam_tracker_flatpak.py" ]; then
+    cp webcam_tracker_flatpak.py "$WIVRN_DATA_DIR/wivrn-fbt/"
+    chmod +x "$WIVRN_DATA_DIR/wivrn-fbt/webcam_tracker_flatpak.py"
     echo "✓ Tracker installed"
 else
-    echo "❌ webcam_tracker.py not found in current directory"
+    echo "❌ webcam_tracker_flatpak.py not found in current directory"
     exit 1
 fi
 echo ""
@@ -68,9 +69,10 @@ cat > "${HOME}/.local/bin/wivrn-fbt-flatpak" << 'LAUNCHER'
 
 # WiVRn FBT Launcher for Flatpak
 # Runs tracker inside WiVRn Flatpak sandbox
+# App ID: io.github.wivrn.wivrn
 
-WIVRN_FLATPAK_DIR="${HOME}/.var/app/com.wivrn.WiVRn"
-TRACKER_PATH="${WIVRN_FLATPAK_DIR}/data/wivrn-fbt/webcam_tracker.py"
+WIVRN_FLATPAK_DIR="${HOME}/.var/app/io.github.wivrn.wivrn"
+TRACKER_PATH="${WIVRN_FLATPAK_DIR}/data/wivrn-fbt/webcam_tracker_flatpak.py"
 CONFIG_PATH="${WIVRN_FLATPAK_DIR}/config/wivrn-fbt/config.json"
 
 if [ ! -f "$TRACKER_PATH" ]; then
@@ -90,7 +92,7 @@ flatpak run \
     --filesystem=host \
     --env=PYTHONUNBUFFERED=1 \
     --env=XR_RUNTIME_JSON=/run/user/1000/wivrn-openxr.json \
-    com.wivrn.WiVRn \
+    io.github.wivrn.wivrn \
     python3 "$TRACKER_PATH" \
     --config "$CONFIG_PATH" \
     --camera-id 0 \
@@ -167,7 +169,7 @@ echo ""
 # Create config editor script
 cat > "${HOME}/.local/bin/wivrn-fbt-config-flatpak" << 'CONFIGWRAPPER'
 #!/bin/bash
-CONFIG_PATH="${HOME}/.var/app/com.wivrn.WiVRn/config/wivrn-fbt/config.json"
+CONFIG_PATH="${HOME}/.var/app/io.github.wivrn.wivrn/config/wivrn-fbt/config.json"
 if [ ! -f "$CONFIG_PATH" ]; then
     echo "❌ Config not found at: $CONFIG_PATH"
     exit 1
@@ -190,8 +192,8 @@ echo "║  Logs:    journalctl --user -u wivrn-fbt-flatpak -f           ║"
 echo "║                                                                ║"
 echo "║  Direct:  wivrn-fbt-flatpak  (runs once, shows preview)       ║"
 echo "║                                                                ║"
-echo "║  Paths:                                                        ║"
-echo "║  Tracker: $WIVRN_DATA_DIR/wivrn-fbt/webcam_tracker.py         ║"
+echo "║  Paths (io.github.wivrn.wivrn):                                ║"
+echo "║  Tracker: $WIVRN_DATA_DIR/wivrn-fbt/webcam_tracker_flatpak.py ║"
 echo "║  Config:  $WIVRN_CONFIG_DIR/wivrn-fbt/config.json             ║"
 echo "╚════════════════════════════════════════════════════════════════╝"
 echo ""
