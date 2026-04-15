@@ -1,5 +1,6 @@
 # WiVRn Full Body Tracking - Documentation
 
+# THIS IS STILL IN PROGRESS AND WILL NOT WORK YET!!
 A complete webcam-based full body tracking system for VR on Ubuntu Linux, compatible with WiVRn OpenXR runtime.
 
 ## Table of Contents
